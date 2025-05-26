@@ -48,28 +48,29 @@ const statValueStyle = {
   color: "#333",
 };
 
-interface TradingCardProps {
-  image: string;
+export interface TradingCardProps {
+  imageURL: string;
   name: string;
   facts: string[];
   stats: { value: string; label: string }[];
 }
 
 export function TradingCard({
-  image,
+  imageURL,
   name,
   facts = [],
   stats = [],
 }: TradingCardProps) {
   return (
     <div style={cardStyle}>
-      {/* <Image
-        src={image}
+      {/* I recommend converting  this to a different image component that's suited to your app - eg next/image for nextjs */}
+      <img
+        src={imageURL}
         alt={name}
         width={320}
         height={200}
         style={{ border: "solid black 2px" }}
-      /> */}
+      />
       <div style={contentStyle}>
         <div style={nameStyle}>{name}</div>
         <div style={factsStyle}>

@@ -1,54 +1,22 @@
+import type { TradingCardProps } from "./TradingCard";
 import { TradingCard } from "./TradingCard";
 import styles from "./TradingCardStack.module.css";
 import { useState, useEffect, useRef } from "react";
 
-export function TradingCardStack() {
-  const [cards, setCards] = useState([
-    {
-      image: "/path-to-image",
-      name: "Coding Cam",
-      facts: [
-        "Full stack, product focused developer",
-        "Has built multiple SaaS products",
-        "Full time roles at startups and corporates",
-      ],
-      stats: [
-        { label: "Years Experience", value: "6+" },
-        {
-          label: "Typescript/React Knowledge",
-          value: "Expert",
-        },
-      ],
-    },
-    {
-      image: "/path-to-image",
-      name: "Content & Advocacy Cam",
-      facts: [
-        "Worked with top developer tool companies on video content",
-        "Led multiple live technical talks",
-        "Former podcast host with 80+ episodes",
-      ],
-      stats: [
-        { label: "Views in Past 12 Months", value: "600,000+" },
-        { label: "Followers on TikTok", value: "7,000+" },
-      ],
-    },
-    {
-      image: "/path-to-image",
-      name: "Rugby Cam",
-      facts: [
-        "Not just a coder, but a rugby player!",
-        "Player for Edinburgh Northern RFC",
-        "Manages the club website. Can't escape coding!",
-      ],
-      stats: [
-        { label: "Tries (2024-25)", value: "3" },
-        { label: "Appearances (2024-25)", value: "14" },
-      ],
-    },
-  ]);
+interface TradingCardStackProps {
+  initiateWithIndicator?: boolean;
+  indicatorText?: string;
+  cardsToDisplay: TradingCardProps[];
+}
 
-  const [showIndicator, setShowIndicator] = useState(true);
+export function TradingCardStack({
+  initiateWithIndicator = true,
+  indicatorText = "← Swipe or use arrow keys →",
+  cardsToDisplay,
+}: TradingCardStackProps) {
+  const [cards, setCards] = useState(cardsToDisplay);
+
+  const [showIndicator, setShowIndicator] = useState(initiateWithIndicator);
 
   const touchStartX = useRef<number | null>(null);
 
@@ -82,7 +50,6 @@ export function TradingCardStack() {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, []);
 
-  // Touch event handlers for swipe
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -124,9 +91,7 @@ export function TradingCardStack() {
         </div>
       ))}
       {showIndicator && (
-        <div className={styles.navigationIndicator}>
-          ← Swipe or use arrow keys →
-        </div>
+        <div className={styles.navigationIndicator}>{indicatorText}</div>
       )}
     </div>
   );
