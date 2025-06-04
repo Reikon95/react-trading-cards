@@ -8,6 +8,19 @@ const cardStyle = {
   border: "2px solid #e0e0e0",
 };
 
+const imageContainerStyle = {
+  width: "100%",
+  height: 200,
+  overflow: "hidden",
+};
+
+const imageStyle = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover" as const,
+  display: "block",
+};
+
 const contentStyle = {
   padding: 16,
 };
@@ -63,14 +76,9 @@ export function TradingCard({
 }: TradingCardProps) {
   return (
     <div style={cardStyle}>
-      {/* I recommend converting  this to a different image component that's suited to your app - eg next/image for nextjs */}
-      <img
-        src={imageURL}
-        alt={name}
-        width={320}
-        height={200}
-        style={{ border: "solid black 2px" }}
-      />
+      <div style={imageContainerStyle}>
+        <img src={imageURL} alt={name} style={imageStyle} />
+      </div>
       <div style={contentStyle}>
         <div style={nameStyle}>{name}</div>
         <div style={factsStyle}>
