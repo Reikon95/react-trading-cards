@@ -1,5 +1,7 @@
 WIP - use at your own risk!
 
+![Trading Cards Demo](https://github.com/user-attachments/assets/d4d182c4-0504-4cba-a3b2-b459b554f7a0)
+
 A mobile responsive, swipeable simple trading card stack component for React with minimal dependencies.
 
 Currently needs to be copied and pasted into your project.
